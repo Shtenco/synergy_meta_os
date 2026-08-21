@@ -1,0 +1,17 @@
+{
+  "schema": "synergy.node-profile/v1",
+  "profile_id": "RESEARCH_COMPUTE_NODE",
+  "allowed_capabilities": ["CONTENT_CACHE", "NEXUS_COMPUTE", "P2P_RELAY"],
+  "required_services": [
+    {"service_id":"content-cache","kind":"CONTENT_CACHE","repository":"Shtenco/synergynet","required_capabilities":["CONTENT_CACHE"]},
+    {"service_id":"nexus","kind":"NEXUS","repository":"Shtenco/agi_nexus","required_capabilities":["NEXUS_COMPUTE"]},
+    {"service_id":"synergynet","kind":"SYNERGYNET","repository":"Shtenco/synergynet","required_capabilities":["P2P_RELAY"]}
+  ],
+  "forbidden_service_kinds": ["AUTOPILOT", "BLOCKCHAIN", "FINANCIAL_OS", "METAPAY"],
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "execution_authority": "NONE",
+  "status": "ARCHITECTURE_PROFILE_ONLY",
+  "profile_digest": "406740705e853fa51ad4eacf7a01925fbe4b5cec491be35ea12ba777d217d714"
+}
