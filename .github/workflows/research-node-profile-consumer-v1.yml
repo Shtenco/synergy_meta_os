@@ -1,0 +1,31 @@
+name: Research Node Profile Consumer v1
+
+on:
+  pull_request:
+    paths:
+      - 'fixtures/node_profiles/research_compute_node_v1.json'
+      - 'schemas/synergy_node_profile_v1.schema.json'
+      - 'src/synergy_meta_os/node_profile_consumer_v1.py'
+      - 'tests/test_research_node_profile_consumer_v1.py'
+      - 'docs/RESEARCH_NODE_PROFILE_CONSUMER_V1.md'
+      - '.github/workflows/research-node-profile-consumer-v1.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: research-node-profile-consumer-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e . pytest
+      - run: python -m pytest -q tests/test_research_node_profile_consumer_v1.py
