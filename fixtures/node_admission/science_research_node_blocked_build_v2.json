@@ -1,0 +1,21 @@
+{
+  "schema":"synergy.node-admission-decision/v2",
+  "node_id":"science-node-001",
+  "manifest_generation":1,
+  "manifest_body_digest":"62f8a86c6a2575c17dfd9545b19c2ed47c0b49f3d8f4b3a20be6864c8eece7b2",
+  "profile_digest":"0c9b82e591c5aa30d1f9b499edee02c0b56643af825bbb7eecb93f8651659107",
+  "capability_registry_digest":"3727810480e5660129fc63a2d7999b988ed9ae387365d4501bb50b7ae7257913",
+  "build_lock_digest":"24e4a3c6ed23c2e156b07821fb3b1e0e232651c256bc3b750d2ed25bee477757",
+  "evaluated_at":"2026-08-21T17:00:00Z",
+  "profile_status":"PROFILE_CONFORMANT",
+  "build_readiness_status":"BLOCKED_BUILD_EVIDENCE",
+  "admission_status":"BLOCKED_BUILD_EVIDENCE",
+  "blockers":["BUILD_NOT_VERIFIED:content-cache","BUILD_NOT_VERIFIED:nexus","BUILD_NOT_VERIFIED:science-agent","BUILD_NOT_VERIFIED:synergynet"],
+  "financial_authority":"NONE",
+  "payment_authority":"NONE",
+  "accounting_authority":"NONE",
+  "execution_authority":"NONE",
+  "deployment_authority":"NONE",
+  "scientific_truth_authority":"NONE",
+  "decision_digest":"d33c013bd28feee1faea62a3521da40fa6a532285ffce81a59819424cf0a7156"
+}
