@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "synergy.node-profile/v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "profile_id", "allowed_capabilities", "required_services",
+    "forbidden_service_kinds", "financial_authority", "payment_authority",
+    "accounting_authority", "execution_authority", "status", "profile_digest"
+  ],
+  "properties": {
+    "schema": {"const": "synergy.node-profile/v1"},
+    "profile_id": {"type": "string", "minLength": 1},
+    "allowed_capabilities": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "required_services": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["service_id", "kind", "repository", "required_capabilities"],
+        "properties": {
+          "service_id": {"type": "string", "minLength": 1},
+          "kind": {"type": "string", "minLength": 1},
+          "repository": {"type": "string", "pattern": "^Shtenco/[A-Za-z0-9_.-]+$"},
+          "required_capabilities": {
+            "type": "array", "minItems": 1, "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "forbidden_service_kinds": {
+      "type": "array", "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "financial_authority": {"const": "NONE"},
+    "payment_authority": {"const": "NONE"},
+    "accounting_authority": {"const": "NONE"},
+    "execution_authority": {"const": "NONE"},
+    "status": {"const": "ARCHITECTURE_PROFILE_ONLY"},
+    "profile_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}
