@@ -1,0 +1,13 @@
+{
+  "schema": "synergy.node-build-lock/v1",
+  "lock_id": "RESEARCH_COMPUTE_NODE_SOURCE_CANDIDATE_20260821",
+  "profile_digest": "406740705e853fa51ad4eacf7a01925fbe4b5cec491be35ea12ba777d217d714",
+  "services": [
+    {"service_id":"content-cache","repository":"Shtenco/synergynet","source_commit":"a8fde01c19420dbe63ca30e1da3b009c0c10064d","source_ref":"feat/persistent-store-codec-v3-20260821","source_role":"SYNERGYNET_PERSISTENT_CACHE_CANDIDATE","build_artifact_digest":null,"build_status":"SOURCE_CANDIDATE_NOT_BUILD_VERIFIED"},
+    {"service_id":"nexus","repository":"Shtenco/agi_nexus","source_commit":"cbc06e83f7f9e242719667e446a090894e11eef1","source_ref":"feat/smallworld-kernel-migration-v1-20260821","source_role":"NEXUS_SMALLWORLD_KERNEL_CANDIDATE","build_artifact_digest":null,"build_status":"SOURCE_CANDIDATE_NOT_BUILD_VERIFIED"},
+    {"service_id":"synergynet","repository":"Shtenco/synergynet","source_commit":"a8fde01c19420dbe63ca30e1da3b009c0c10064d","source_ref":"feat/persistent-store-codec-v3-20260821","source_role":"SYNERGYNET_TRANSPORT_CANDIDATE","build_artifact_digest":null,"build_status":"SOURCE_CANDIDATE_NOT_BUILD_VERIFIED"}
+  ],
+  "verification_status": "SOURCE_IDENTITY_FROZEN_BUILD_NOT_VERIFIED",
+  "execution_authority": "NONE",
+  "lock_digest": "14c763218602585d49e12060e1e6cf21d33815fda0cb18711a6522a26157ace2"
+}
