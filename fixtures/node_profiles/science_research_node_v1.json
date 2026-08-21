@@ -1,0 +1,18 @@
+{
+  "schema":"synergy.node-profile/v1",
+  "profile_id":"SCIENCE_RESEARCH_NODE",
+  "allowed_capabilities":["CONTENT_CACHE","NEXUS_COMPUTE","P2P_RELAY","SCIENCE_RESEARCH"],
+  "required_services":[
+    {"service_id":"content-cache","kind":"CONTENT_CACHE","repository":"Shtenco/synergynet","required_capabilities":["CONTENT_CACHE"]},
+    {"service_id":"nexus","kind":"NEXUS","repository":"Shtenco/agi_nexus","required_capabilities":["NEXUS_COMPUTE"]},
+    {"service_id":"science-agent","kind":"SCIENCE_AGENT","repository":"Shtenco/nexus_science_agent","required_capabilities":["SCIENCE_RESEARCH"]},
+    {"service_id":"synergynet","kind":"SYNERGYNET","repository":"Shtenco/synergynet","required_capabilities":["P2P_RELAY"]}
+  ],
+  "forbidden_service_kinds":["AUTOPILOT","BLOCKCHAIN","FINANCIAL_OS","METAPAY","MIDAS"],
+  "financial_authority":"NONE",
+  "payment_authority":"NONE",
+  "accounting_authority":"NONE",
+  "execution_authority":"NONE",
+  "status":"ARCHITECTURE_PROFILE_ONLY",
+  "profile_digest":"0c9b82e591c5aa30d1f9b499edee02c0b56643af825bbb7eecb93f8651659107"
+}
