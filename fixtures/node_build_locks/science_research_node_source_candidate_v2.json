@@ -1,0 +1,15 @@
+{
+  "schema":"synergy.node-build-lock/v2",
+  "lock_id":"SCIENCE_RESEARCH_NODE_SOURCE_CANDIDATE_20260821",
+  "profile_digest":"0c9b82e591c5aa30d1f9b499edee02c0b56643af825bbb7eecb93f8651659107",
+  "capability_registry_digest":"3727810480e5660129fc63a2d7999b988ed9ae387365d4501bb50b7ae7257913",
+  "services":[
+    {"service_id":"content-cache","kind":"CONTENT_CACHE","repository":"Shtenco/synergynet","source_commit":"874a83b6510420ec43ce99fc4b7936e106ad2339","source_ref":"feat/static-peer-relay-service-v1-20260821","source_role":"SYNERGYNET_PERSISTENT_CONTENT_SERVICE_CANDIDATE","build_artifact_digest":null,"build_evidence_digest":null,"build_status":"SOURCE_CANDIDATE_NOT_BUILD_VERIFIED"},
+    {"service_id":"nexus","kind":"NEXUS","repository":"Shtenco/agi_nexus","source_commit":"ef1a6e3675e53fda4bf91566aec61f1b62fa9336","source_ref":"feat/smallworld-service-protocol-v1-20260821","source_role":"NEXUS_SMALLWORLD_SERVICE_CANDIDATE","build_artifact_digest":null,"build_evidence_digest":null,"build_status":"SOURCE_CANDIDATE_NOT_BUILD_VERIFIED"},
+    {"service_id":"science-agent","kind":"SCIENCE_AGENT","repository":"Shtenco/nexus_science_agent","source_commit":"0607690c3036d2fdce2ac3e044094a8e4da0311b","source_ref":"feat/science-service-protocol-v4-20260821","source_role":"SCIENCE_AGENT_LOCAL_RESEARCH_SERVICE_CANDIDATE","build_artifact_digest":null,"build_evidence_digest":null,"build_status":"SOURCE_CANDIDATE_NOT_BUILD_VERIFIED"},
+    {"service_id":"synergynet","kind":"SYNERGYNET","repository":"Shtenco/synergynet","source_commit":"874a83b6510420ec43ce99fc4b7936e106ad2339","source_ref":"feat/static-peer-relay-service-v1-20260821","source_role":"SYNERGYNET_STATIC_PEER_RELAY_SERVICE_CANDIDATE","build_artifact_digest":null,"build_evidence_digest":null,"build_status":"SOURCE_CANDIDATE_NOT_BUILD_VERIFIED"}
+  ],
+  "verification_status":"SOURCE_IDENTITY_FROZEN_BUILD_NOT_VERIFIED",
+  "execution_authority":"NONE",
+  "lock_digest":"24e4a3c6ed23c2e156b07821fb3b1e0e232651c256bc3b750d2ed25bee477757"
+}
