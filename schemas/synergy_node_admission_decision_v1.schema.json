@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "synergy.node-admission-decision/v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","node_id","manifest_generation","manifest_body_digest","profile_digest","source_lock_digest","evaluated_at","profile_status","source_lock_status","build_evidence_status","admission_status","blockers","financial_authority","payment_authority","accounting_authority","execution_authority","decision_digest"],
+  "properties": {
+    "schema": {"const": "synergy.node-admission-decision/v1"},
+    "node_id": {"type": "string", "minLength": 1},
+    "manifest_generation": {"type": "integer", "minimum": 1, "maximum": 9007199254740991},
+    "manifest_body_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "profile_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_lock_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evaluated_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+    "profile_status": {"enum": ["PROFILE_CONFORMANT", "SIGNED_BUT_PROFILE_NONCONFORMANT"]},
+    "source_lock_status": {"const": "SOURCE_LOCK_CONFORMANT"},
+    "build_evidence_status": {"const": "BUILD_EVIDENCE_MISSING"},
+    "admission_status": {"enum": ["BLOCKED_PROFILE", "BLOCKED_BUILD_EVIDENCE"]},
+    "blockers": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "financial_authority": {"const": "NONE"},
+    "payment_authority": {"const": "NONE"},
+    "accounting_authority": {"const": "NONE"},
+    "execution_authority": {"const": "NONE"},
+    "decision_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}
