@@ -1,0 +1,31 @@
+name: Node Admission Decision v1
+
+on:
+  pull_request:
+    paths:
+      - 'fixtures/node_admission/research_compute_node_blocked_build_v1.json'
+      - 'schemas/synergy_node_admission_decision_v1.schema.json'
+      - 'src/synergy_meta_os/node_admission_decision_v1.py'
+      - 'tests/test_node_admission_decision_v1.py'
+      - 'docs/NODE_ADMISSION_DECISION_V1.md'
+      - '.github/workflows/node-admission-decision-v1.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: node-admission-decision-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e . pytest
+      - run: python -m pytest -q tests/test_node_admission_decision_v1.py

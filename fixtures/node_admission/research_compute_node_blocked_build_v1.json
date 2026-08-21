@@ -1,0 +1,23 @@
+{
+  "schema": "synergy.node-admission-decision/v1",
+  "node_id": "research-node-001",
+  "manifest_generation": 1,
+  "manifest_body_digest": "f141aeac639fe2ddf58909ba72bd0429c68b899e7d22ff703e1fc9d7f31e1cf0",
+  "profile_digest": "406740705e853fa51ad4eacf7a01925fbe4b5cec491be35ea12ba777d217d714",
+  "source_lock_digest": "14c763218602585d49e12060e1e6cf21d33815fda0cb18711a6522a26157ace2",
+  "evaluated_at": "2026-08-21T13:30:00Z",
+  "profile_status": "PROFILE_CONFORMANT",
+  "source_lock_status": "SOURCE_LOCK_CONFORMANT",
+  "build_evidence_status": "BUILD_EVIDENCE_MISSING",
+  "admission_status": "BLOCKED_BUILD_EVIDENCE",
+  "blockers": [
+    "BUILD_ARTIFACT_EVIDENCE_MISSING:content-cache",
+    "BUILD_ARTIFACT_EVIDENCE_MISSING:nexus",
+    "BUILD_ARTIFACT_EVIDENCE_MISSING:synergynet"
+  ],
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "execution_authority": "NONE",
+  "decision_digest": "cac0a7dca9ac1c304ca9d37577d32c95024de02edf4c70f283d5474ddfcbb9a1"
+}
