@@ -1,0 +1,28 @@
+name: capability-registry-manifest-v2
+
+on:
+  pull_request:
+    paths:
+      - 'fixtures/capabilities/**'
+      - 'src/synergy_meta_os/capability_registry_consumer_v1.py'
+      - 'src/synergy_meta_os/manifest_v2.py'
+      - 'schemas/synergy_node_manifest_v2.schema.json'
+      - 'tests/test_manifest_v2_capability_registry.py'
+      - '.github/workflows/capability-registry-manifest-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest cryptography
+      - run: PYTHONPATH=src pytest -q tests/test_manifest_v2_capability_registry.py
+      - run: python -m json.tool schemas/synergy_node_manifest_v2.schema.json >/dev/null
+      - run: python -m json.tool fixtures/capabilities/synergy_capability_registry_v1.json >/dev/null

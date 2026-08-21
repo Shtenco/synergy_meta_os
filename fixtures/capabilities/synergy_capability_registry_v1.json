@@ -1,0 +1,33 @@
+{
+  "schema": "synergy.capability-registry/v1",
+  "registry_id": "synergy-core-capabilities",
+  "generation": 1,
+  "capabilities": [
+    {"capability_id":"AUTOPILOT_SERVICE","authority_grant":"NONE","risk_tier":"HIGH"},
+    {"capability_id":"BLOCKCHAIN_VALIDATOR","authority_grant":"NONE","risk_tier":"HIGH"},
+    {"capability_id":"CONTENT_CACHE","authority_grant":"NONE","risk_tier":"LOW"},
+    {"capability_id":"FINANCIAL_SERVICE","authority_grant":"NONE","risk_tier":"CRITICAL"},
+    {"capability_id":"METAPAY_GATEWAY","authority_grant":"NONE","risk_tier":"CRITICAL"},
+    {"capability_id":"MIDAS_ANALYSIS","authority_grant":"NONE","risk_tier":"HIGH"},
+    {"capability_id":"NEXUS_COMPUTE","authority_grant":"NONE","risk_tier":"MEDIUM"},
+    {"capability_id":"P2P_RELAY","authority_grant":"NONE","risk_tier":"MEDIUM"},
+    {"capability_id":"SCIENCE_RESEARCH","authority_grant":"NONE","risk_tier":"MEDIUM"}
+  ],
+  "service_kinds": [
+    {"kind":"AUTOPILOT","repository":"Shtenco/synergychain","required_capabilities":["AUTOPILOT_SERVICE"]},
+    {"kind":"BLOCKCHAIN","repository":"Shtenco/synergy_ai_blockchain","required_capabilities":["BLOCKCHAIN_VALIDATOR"]},
+    {"kind":"CONTENT_CACHE","repository":"Shtenco/synergynet","required_capabilities":["CONTENT_CACHE"]},
+    {"kind":"FINANCIAL_OS","repository":"Shtenco/synergy_financial_os","required_capabilities":["FINANCIAL_SERVICE"]},
+    {"kind":"METAPAY","repository":"Shtenco/synergy_pay_system","required_capabilities":["METAPAY_GATEWAY"]},
+    {"kind":"MIDAS","repository":"Shtenco/midas_ai","required_capabilities":["MIDAS_ANALYSIS"]},
+    {"kind":"NEXUS","repository":"Shtenco/agi_nexus","required_capabilities":["NEXUS_COMPUTE"]},
+    {"kind":"SCIENCE_AGENT","repository":"Shtenco/nexus_science_agent","required_capabilities":["SCIENCE_RESEARCH"]},
+    {"kind":"SYNERGYNET","repository":"Shtenco/synergynet","required_capabilities":["P2P_RELAY"]}
+  ],
+  "authority_semantics": {
+    "architecture_authority":"Shtenco/synergy_system",
+    "runtime_manifest_authority":"Shtenco/synergy_meta_os",
+    "capability_does_not_grant_domain_authority":true,
+    "execution_authority":"NONE"
+  }
+}
