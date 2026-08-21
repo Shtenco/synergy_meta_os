@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"synergy.node-admission-decision/v2",
+  "type":"object","additionalProperties":false,
+  "required":["schema","profile_id","profile_digest","capability_registry_digest","signed_manifest_digest","manifest_body_digest","build_lock_digest","build_verification_status","evaluated_at","status","blockers","deployment_authority","execution_authority","financial_authority","payment_authority","accounting_authority","scientific_truth_authority","decision_digest"],
+  "properties":{
+    "schema":{"const":"synergy.node-admission-decision/v2"},
+    "profile_id":{"type":"string","minLength":1},
+    "profile_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "capability_registry_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "signed_manifest_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "manifest_body_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "build_lock_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "build_verification_status":{"enum":["SOURCE_IDENTITY_FROZEN_BUILD_NOT_VERIFIED","BUILD_EVIDENCE_INCOMPLETE","BUILD_VERIFIED"]},
+    "evaluated_at":{"type":"string","pattern":"Z$"},
+    "status":{"enum":["BLOCKED_PROFILE","BLOCKED_BUILD_EVIDENCE","ADMISSION_REVIEWABLE"]},
+    "blockers":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "deployment_authority":{"const":"NONE"},"execution_authority":{"const":"NONE"},"financial_authority":{"const":"NONE"},"payment_authority":{"const":"NONE"},"accounting_authority":{"const":"NONE"},"scientific_truth_authority":{"const":"NONE"},
+    "decision_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"}
+  }
+}
