@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"synergy.node-manifest/v2",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["body","signature","body_digest","execution_authority"],
+  "properties":{
+    "body":{
+      "type":"object","additionalProperties":false,
+      "required":["schema","node_id","generation","issued_at","expires_at","capability_registry_digest","capabilities","services"],
+      "properties":{
+        "schema":{"const":"synergy.node-manifest/v2"},
+        "node_id":{"type":"string","minLength":1},
+        "generation":{"type":"integer","minimum":1,"maximum":9007199254740991},
+        "issued_at":{"type":"string","pattern":"Z$"},
+        "expires_at":{"type":"string","pattern":"Z$"},
+        "capability_registry_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+        "capabilities":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^[A-Z][A-Z0-9_]*$"}},
+        "services":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["service_id","kind","repository","artifact_digest","required_capabilities","desired_state"],"properties":{"service_id":{"type":"string","minLength":1},"kind":{"type":"string","pattern":"^[A-Z][A-Z0-9_]*$"},"repository":{"type":"string","pattern":"^Shtenco/[^/]+$"},"artifact_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},"required_capabilities":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^[A-Z][A-Z0-9_]*$"}},"desired_state":{"enum":["ENABLED","DISABLED"]}}}}
+      }
+    },
+    "signature":{"type":"object","additionalProperties":false,"required":["algorithm","key_id","value_b64"],"properties":{"algorithm":{"const":"Ed25519"},"key_id":{"type":"string","minLength":1},"value_b64":{"type":"string","minLength":1}}},
+    "body_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "execution_authority":{"const":"NONE"}
+  }
+}
