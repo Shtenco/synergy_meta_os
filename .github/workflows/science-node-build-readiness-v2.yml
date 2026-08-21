@@ -1,0 +1,27 @@
+name: science-node-build-readiness-v2
+
+on:
+  pull_request:
+    paths:
+      - 'fixtures/node_build_locks/science_research_node_source_candidate_v2.json'
+      - 'src/synergy_meta_os/node_build_lock_consumer_v2.py'
+      - 'src/synergy_meta_os/science_node_build_readiness_v2.py'
+      - 'tests/test_science_node_build_readiness_v2.py'
+      - 'docs/SCIENCE_NODE_BUILD_READINESS_V2.md'
+      - '.github/workflows/science-node-build-readiness-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest cryptography
+      - run: PYTHONPATH=src pytest -q tests/test_science_node_build_readiness_v2.py
+      - run: python -m json.tool fixtures/node_build_locks/science_research_node_source_candidate_v2.json >/dev/null
