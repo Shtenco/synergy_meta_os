@@ -1,0 +1,19 @@
+{
+  "schema": "synergy.node-build-plan/v4",
+  "plan_id": "RESEARCH_COMPUTE_NODE_REPRODUCIBLE_ARTIFACTS_V4_20260822",
+  "profile_digest": "406740705e853fa51ad4eacf7a01925fbe4b5cec491be35ea12ba777d217d714",
+  "base_source_lock_digest": "14c763218602585d49e12060e1e6cf21d33815fda0cb18711a6522a26157ace2",
+  "source_revision_digest": "82d4b40e2276b8095f7fd3ff2105181d9c038b3e2879265facd022ff30d9fb32",
+  "previous_build_plan_digest": "5ac2d5a20428d5e3f88bf25b52137177122cb7d0d3feebf62efeb0576aedddd2",
+  "toolchain_lock_digest": "af92c9f1909ae3b64aaea78bdce2c6d05deb974ad242482b36e0c8ce820a2848",
+  "artifact_set_digest": "14a67cfbe75361a8ca2f3bd43befd3aef97eddc29d4d725bd83f289ed829bc77",
+  "services": [
+    {"service_id":"content-cache","repository":"Shtenco/synergynet","build_recipe_digest":"37cb503fb8c6d5e8ef2305ce03d0332abee2d9eed5bb29f90364e20874d128df","build_evidence_digest":"8c4f44f1b0b95221d660bb4a7c0598ada17e86f59bade16e85d93789bf1ddd8c","artifact_digest":"7f22e68d80a7df879af71ebccdb45f8edb10cae3698bf07faa7076ce76fd0ef7","artifact_runtime_spec_digest":"abb35edd0336ea36f249d24b04e1b7482fea4ecebc5c881b655bf8a390d8b5ad","reproducibility_status":"REPRODUCIBLE_BYTE_IDENTICAL","artifact_status":"VERIFIED_EXECUTABLE","execution_authority":"NONE"},
+    {"service_id":"nexus","repository":"Shtenco/agi_nexus","build_recipe_digest":"3bbe2bf1f90a9ed1abade80782062256a1a72619b72345da41f7ed9897b4a735","build_evidence_digest":"cd14275a264ec1f0ef7045721eb18e31787d918cd78563f93ebb486333f8daee","artifact_digest":"fa7bbd141566d1542a5c03ee485de8ebd5f2ed76557ac56ff728196429fbbb64","artifact_runtime_spec_digest":"376f6a85fb1ddb2abe529559b73964241fb3f25a2a8832657eb0f19a1ecc6738","reproducibility_status":"REPRODUCIBLE_BYTE_IDENTICAL","artifact_status":"VERIFIED_EXECUTABLE","execution_authority":"NONE"},
+    {"service_id":"synergynet","repository":"Shtenco/synergynet","build_recipe_digest":"37cb503fb8c6d5e8ef2305ce03d0332abee2d9eed5bb29f90364e20874d128df","build_evidence_digest":"8c4f44f1b0b95221d660bb4a7c0598ada17e86f59bade16e85d93789bf1ddd8c","artifact_digest":"7f22e68d80a7df879af71ebccdb45f8edb10cae3698bf07faa7076ce76fd0ef7","artifact_runtime_spec_digest":"8c38cd130e3dd73723e3a3241d2df61bef218abdab2d16785ccec5b172fac4df","reproducibility_status":"REPRODUCIBLE_BYTE_IDENTICAL","artifact_status":"VERIFIED_EXECUTABLE","execution_authority":"NONE"}
+  ],
+  "build_blockers": [],
+  "plan_status": "BUILD_ARTIFACTS_VERIFIED_REPRODUCIBLE",
+  "execution_authority": "NONE",
+  "plan_digest": "8f37d84645e78818b17c884e7c46d1ba680e79a53a2125faab64de42a290953f"
+}
