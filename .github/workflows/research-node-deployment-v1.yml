@@ -1,0 +1,31 @@
+name: Research Node Deployment v1
+
+on:
+  pull_request:
+    paths:
+      - 'registry/research_compute_node_artifact_registry_v1.json'
+      - 'deployments/research_compute_node_deployment_plan_v1.json'
+      - 'src/synergy_meta_os/deployment_v1.py'
+      - 'tests/test_deployment_v1.py'
+      - 'docs/RESEARCH_NODE_DEPLOYMENT_V1.md'
+      - '.github/workflows/research-node-deployment-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11','3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_deployment_v1.py
