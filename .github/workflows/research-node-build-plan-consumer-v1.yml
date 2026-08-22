@@ -1,0 +1,32 @@
+name: Research Node Build Plan Consumer v1
+
+on:
+  pull_request:
+    paths:
+      - 'fixtures/node_build_plans/research_compute_node_build_plan_source_candidate_v1.json'
+      - 'fixtures/build_recipes/agi_nexus_build_recipe_v1.json'
+      - 'fixtures/build_recipes/synergynet_build_recipe_v1.json'
+      - 'src/synergy_meta_os/node_build_plan_consumer_v1.py'
+      - 'schemas/synergy_node_build_plan_v1.schema.json'
+      - 'tests/test_research_node_build_plan_consumer_v1.py'
+      - 'docs/RESEARCH_NODE_BUILD_PLAN_CONSUMER_V1.md'
+      - 'STATUS_RESEARCH_NODE_BUILD_PLAN_CONSUMER_V1.md'
+      - '.github/workflows/research-node-build-plan-consumer-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip pytest jsonschema cryptography
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_research_node_build_plan_consumer_v1.py
