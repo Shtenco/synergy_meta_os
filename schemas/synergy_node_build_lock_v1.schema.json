@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "synergy.node-build-lock/v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","lock_id","profile_digest","services","verification_status","execution_authority","lock_digest"],
+  "properties": {
+    "schema": {"const": "synergy.node-build-lock/v1"},
+    "lock_id": {"type": "string", "minLength": 1},
+    "profile_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "services": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["service_id","repository","source_commit","source_ref","source_role","build_artifact_digest","build_status"],
+        "properties": {
+          "service_id": {"type": "string", "minLength": 1},
+          "repository": {"type": "string", "pattern": "^Shtenco/"},
+          "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+          "source_ref": {"type": "string", "minLength": 1},
+          "source_role": {"type": "string", "minLength": 1},
+          "build_artifact_digest": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "build_status": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "verification_status": {"type": "string", "minLength": 1},
+    "execution_authority": {"const": "NONE"},
+    "lock_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}
