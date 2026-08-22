@@ -1,0 +1,24 @@
+{
+  "schema": "synergy.meta-os-admission/v1",
+  "admission_id": "RESEARCH_COMPUTE_NODE_ARTIFACT_VERIFIED_20260822",
+  "subject": "RESEARCH_COMPUTE_NODE",
+  "readiness_repository": "Shtenco/synergy_system",
+  "readiness_commit": "c2ec96ef24a39d397f0903f5a7f5ef7e96e46865",
+  "readiness_digest": "ee20353d76d377f31f8054dae0c6463db4b3aae1a57b4ccfc2d7631e2251a95b",
+  "build_plan_digest": "8f37d84645e78818b17c884e7c46d1ba680e79a53a2125faab64de42a290953f",
+  "toolchain_lock_digest": "af92c9f1909ae3b64aaea78bdce2c6d05deb974ad242482b36e0c8ce820a2848",
+  "artifact_set_digest": "14a67cfbe75361a8ca2f3bd43befd3aef97eddc29d4d725bd83f289ed829bc77",
+  "artifacts": [
+    {"service_id":"content-cache","artifact_digest":"7f22e68d80a7df879af71ebccdb45f8edb10cae3698bf07faa7076ce76fd0ef7","runtime_spec_digest":"abb35edd0336ea36f249d24b04e1b7482fea4ecebc5c881b655bf8a390d8b5ad"},
+    {"service_id":"nexus","artifact_digest":"fa7bbd141566d1542a5c03ee485de8ebd5f2ed76557ac56ff728196429fbbb64","runtime_spec_digest":"376f6a85fb1ddb2abe529559b73964241fb3f25a2a8832657eb0f19a1ecc6738"},
+    {"service_id":"synergynet","artifact_digest":"7f22e68d80a7df879af71ebccdb45f8edb10cae3698bf07faa7076ce76fd0ef7","runtime_spec_digest":"8c38cd130e3dd73723e3a3241d2df61bef218abdab2d16785ccec5b172fac4df"}
+  ],
+  "decision": "ADMITTED_ARTIFACT_VERIFIED_NOT_RUNNING",
+  "admission_effect": "REGISTRY_ELIGIBILITY_ONLY",
+  "running": false,
+  "auto_start": false,
+  "execution_authority": "NONE",
+  "financial_authority": "NONE",
+  "network_authority_change": "NONE",
+  "admission_digest": "4ace5623bc0a3100e2502132056f76821eda930199eb74498cc1cbe4f4008e37"
+}
