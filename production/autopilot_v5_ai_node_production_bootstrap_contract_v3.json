@@ -1,0 +1,42 @@
+{
+  "schema": "synergy.meta-os-production-bootstrap-contract/v3",
+  "contract_id": "SYNERGY_AUTOPILOT_V5_AI_NODE_PRODUCTION_BOOTSTRAP_V3_20260824",
+  "node_id": "synergy-autopilot-v5-ai-node",
+  "previous_bootstrap_contract_digest": "3e2f1eb8c34b3beba75157b88aedc13c354d4450b9c0ab611cd63bb51f4f9a8c",
+  "preproduction_release_v3_digest": "be8ca90e514e72ddccdc67a38cdd9b8321c2b55eb17ba6f04a9c65dbd4a16129",
+  "deployment_reference_digest": "19375c02a286a4c14e704ad0496d1c6084ddb00e7c4bcf3506a304a6b0946b70",
+  "production_transition_gate_digest": "fd3f97c1422376ae507e7ec0ab1dcff529cba4ad9b5f6b1e9b7b62ef43d75b8c",
+  "synergynet_location_evidence_v3_digest": "b1ca1c1f5849deac30a0aac14748c21b8a74a26776ba2134a448c9427a839220",
+  "synergynet_artifact_digest": "7f22e68d80a7df879af71ebccdb45f8edb10cae3698bf07faa7076ce76fd0ef7",
+  "synergynet_location_status": "DURABLE_GITHUB_GIT_CARRIER_CURRENTLY_RESOLVABLE",
+  "required_inputs": {
+    "production_host_profile_digest": null,
+    "production_supervisor_config_digest": null,
+    "fresh_artifact_verification_digest": null,
+    "fresh_health_transport_roundtrip_digest": null,
+    "production_deployment_evidence_digest": null,
+    "production_deployment_result_digest": null,
+    "governance_promotion_digest": null
+  },
+  "forbidden_reuse": [
+    "36a9092977e360b56fd7d1e21b4504f1215ed741df6f492b3ed37b79649573bb",
+    "74797e02e0bb32722bbfffb76af42bb00d495fb3a5c0ea4a5b48a4e1d4275879",
+    "8e1b05dca7e349d57e1908dca717d2c1d451ca79adde5cfe539e9e46f83d052b",
+    "011c3ce24cfd33dc99fbdea0ea2f5dcd344deefd927f57c1b9c1fa3e3eaa3833"
+  ],
+  "artifact_resolution_policy": "USE_PINNED_SYNERGYNET_LOCATION_EVIDENCE_V3_AND_VERIFY_ALL_EXACT_ARTIFACT_SHA256_SIZE_ON_PRODUCTION_HOST_BEFORE_START",
+  "nexus_network_access": "NONE",
+  "outer_node_network_policy": "STATIC_OPERATOR_ALLOWLIST_ONLY",
+  "secrets_policy": "RUNTIME_SECRET_PROVIDER_ONLY_NO_SECRETS_IN_CONTRACT_OR_REPOSITORY",
+  "startup_allowed": false,
+  "launch_status": "BLOCKED_MISSING_FRESH_PRODUCTION_HOST_SUPERVISOR_AND_DEPLOYMENT_INPUTS",
+  "governance_status": "NOT_AUTHORIZED",
+  "current_running": false,
+  "auto_start": false,
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "blockchain_submission_authority": "NONE",
+  "node_execution_authority": "NONE",
+  "bootstrap_contract_digest": "00330d77273e5dd35ef7ba30cfe02a4cc4aef89522e374d1fb2ef833c318aa75"
+}
