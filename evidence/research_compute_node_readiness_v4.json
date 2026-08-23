@@ -1,0 +1,19 @@
+{
+  "schema": "synergy.node-readiness/v4",
+  "readiness_id": "RESEARCH_COMPUTE_NODE_ARTIFACT_VERIFIED_V4_20260822",
+  "previous_readiness_digest": "2d2622e82f0a818facdc46a2fac0773107d42b8d8e7b519b4d2fe4030efd1a89",
+  "profile_digest": "406740705e853fa51ad4eacf7a01925fbe4b5cec491be35ea12ba777d217d714",
+  "base_source_lock_digest": "14c763218602585d49e12060e1e6cf21d33815fda0cb18711a6522a26157ace2",
+  "source_revision_digest": "82d4b40e2276b8095f7fd3ff2105181d9c038b3e2879265facd022ff30d9fb32",
+  "build_plan_digest": "8f37d84645e78818b17c884e7c46d1ba680e79a53a2125faab64de42a290953f",
+  "toolchain_lock_digest": "af92c9f1909ae3b64aaea78bdce2c6d05deb974ad242482b36e0c8ce820a2848",
+  "artifact_set_digest": "14a67cfbe75361a8ca2f3bd43befd3aef97eddc29d4d725bd83f289ed829bc77",
+  "build_status": "BUILD_ARTIFACTS_VERIFIED_REPRODUCIBLE",
+  "service_status": "ALL_REQUIRED_SERVICES_ARTIFACT_VERIFIED",
+  "node_status": "NODE_ADMISSION_READY_NOT_RUNNING",
+  "blockers": [],
+  "resolved_since_v3": ["BUILD_ARTIFACTS_NOT_VERIFIED", "BUILD_TOOLCHAIN_NOT_FROZEN"],
+  "auto_start": false,
+  "execution_authority": "NONE",
+  "readiness_digest": "ee20353d76d377f31f8054dae0c6463db4b3aae1a57b4ccfc2d7631e2251a95b"
+}
