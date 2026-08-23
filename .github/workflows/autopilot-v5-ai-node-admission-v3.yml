@@ -1,0 +1,21 @@
+name: AUTOPILOT V5 AI Node Admission v3
+on:
+  pull_request:
+    paths:
+      - 'profiles/synergy_autopilot_v5_ai_node_profile_v3.json'
+      - 'admissions/synergy_autopilot_v5_ai_node_admission_v3.json'
+      - 'src/synergy_meta_os/autopilot_ai_node_admission_v3.py'
+      - 'tests/test_autopilot_ai_node_admission_v3.py'
+      - 'docs/AUTOPILOT_V5_AI_NODE_ADMISSION_V3_PREPRODUCTION_20260824.md'
+      - '.github/workflows/autopilot-v5-ai-node-admission-v3.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - run: python -m unittest tests/test_autopilot_ai_node_admission_v3.py -v
