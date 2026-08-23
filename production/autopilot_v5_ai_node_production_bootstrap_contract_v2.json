@@ -1,0 +1,42 @@
+{
+  "schema": "synergy.meta-os-production-bootstrap-contract/v2",
+  "contract_id": "SYNERGY_AUTOPILOT_V5_AI_NODE_PRODUCTION_BOOTSTRAP_V2_20260823",
+  "node_id": "synergy-autopilot-v5-ai-node",
+  "previous_bootstrap_contract_digest": "605c6c953e998efb9585a88c1c8f1a022d7160e3448139c2b80a33e6b6cbabd3",
+  "preproduction_release_v2_digest": "03914c9199b25227026d02a2a2b2d0d8a11e958982c76865701729fff55710ba",
+  "deployment_reference_digest": "19375c02a286a4c14e704ad0496d1c6084ddb00e7c4bcf3506a304a6b0946b70",
+  "production_transition_gate_digest": "fd3f97c1422376ae507e7ec0ab1dcff529cba4ad9b5f6b1e9b7b62ef43d75b8c",
+  "synergynet_locator_negative_evidence_digest": "2529d725e426c5028daab7346d1c704d643ffd209d35ceace7f7330203a6353f",
+  "required_inputs": {
+    "new_synergynet_location_evidence_v3_digest": null,
+    "production_host_profile_digest": null,
+    "production_supervisor_config_digest": null,
+    "fresh_artifact_verification_digest": null,
+    "fresh_health_transport_roundtrip_digest": null,
+    "production_deployment_evidence_digest": null,
+    "production_deployment_result_digest": null,
+    "governance_promotion_digest": null
+  },
+  "forbidden_reuse": [
+    "c4102a8e668b79fc961a5f1767154154f4a600d320442770d74c7a006a5cee08",
+    "36a9092977e360b56fd7d1e21b4504f1215ed741df6f492b3ed37b79649573bb",
+    "74797e02e0bb32722bbfffb76af42bb00d495fb3a5c0ea4a5b48a4e1d4275879",
+    "8e1b05dca7e349d57e1908dca717d2c1d451ca79adde5cfe539e9e46f83d052b",
+    "011c3ce24cfd33dc99fbdea0ea2f5dcd344deefd927f57c1b9c1fa3e3eaa3833"
+  ],
+  "artifact_resolution_policy": "NEW_SYNERGYNET_LOCATOR_V3_THEN_VERIFY_ALL_EXACT_ARTIFACT_SHA256_SIZE_BEFORE_START",
+  "nexus_network_access": "NONE",
+  "outer_node_network_policy": "STATIC_OPERATOR_ALLOWLIST_ONLY",
+  "secrets_policy": "RUNTIME_SECRET_PROVIDER_ONLY_NO_SECRETS_IN_CONTRACT_OR_REPOSITORY",
+  "startup_allowed": false,
+  "launch_status": "BLOCKED_MISSING_NEW_LOCATOR_AND_FRESH_PRODUCTION_INPUTS",
+  "governance_status": "NOT_AUTHORIZED",
+  "current_running": false,
+  "auto_start": false,
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "blockchain_submission_authority": "NONE",
+  "node_execution_authority": "NONE",
+  "bootstrap_contract_digest": "3e2f1eb8c34b3beba75157b88aedc13c354d4450b9c0ab611cd63bb51f4f9a8c"
+}
