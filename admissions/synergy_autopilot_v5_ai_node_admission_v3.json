@@ -1,0 +1,30 @@
+{
+  "schema": "synergy.meta-os-ai-node-admission/v3",
+  "admission_id": "SYNERGY_AUTOPILOT_V5_AI_NODE_ADMISSION_PREPRODUCTION_RC3_20260824",
+  "subject": "synergy-autopilot-v5-ai-node",
+  "previous_admission_digest": "4d3502dba28745b8a734c082ca0260cbbfd4ead11a1396537434844df9987ee3",
+  "profile_digest": "96ea31f50ff61b478390d682e88cca89c806e88dbaef1c4fc53b109724ca8222",
+  "source_commit": "c39f6f0ee0e37c08366a63ec160c580b9ae954ba",
+  "integration_manifest_digest": "a793250aaa2299fdaf1661e985423c2b62687a19395ceabcc7bb63c005defe54",
+  "preproduction_release_v3_digest": "be8ca90e514e72ddccdc67a38cdd9b8321c2b55eb17ba6f04a9c65dbd4a16129",
+  "production_bootstrap_v3_digest": "00330d77273e5dd35ef7ba30cfe02a4cc4aef89522e374d1fb2ef833c318aa75",
+  "synergynet_location_evidence_v3_digest": "b1ca1c1f5849deac30a0aac14748c21b8a74a26776ba2134a448c9427a839220",
+  "transport_binding_digest": "0c58185ea0af4a8abc7ce215c0b7ff077cea9357e831b9d197ec730a34ed6c7e",
+  "historical_lab_deployment_result_digest": "011c3ce24cfd33dc99fbdea0ea2f5dcd344deefd927f57c1b9c1fa3e3eaa3833",
+  "decision": "ADMITTED_ARTIFACT_AND_TRANSPORT_RESOLVED_PRODUCTION_NOT_LAUNCHABLE_NOT_RUNNING",
+  "admission_effect": "PRODUCTION_REGISTRY_ELIGIBILITY_ONLY",
+  "blockers": [
+    "PRODUCTION_HOST_PROFILE_NOT_BOUND",
+    "PRODUCTION_SUPERVISOR_CONFIG_NOT_MATERIALIZED",
+    "PRODUCTION_DEPLOYMENT_EVIDENCE_NOT_EXECUTED"
+  ],
+  "running": false,
+  "auto_start": false,
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "host_execution_authority": "NONE",
+  "blockchain_submission_authority": "NONE",
+  "execution_authority": "NONE",
+  "admission_digest": "b1c151d4d5095278006d338c65f3a56b4853c3b3aa70a429205bea84fc5770e8"
+}
