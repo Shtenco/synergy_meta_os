@@ -5,6 +5,8 @@ on:
       - 'production/autopilot_v5_ai_node_production_bootstrap_contract_v4.json'
       - 'production/autopilot_v5_ai_node_production_inputs_template_v1.json'
       - 'src/synergy_meta_os/production_bootstrap_v4.py'
+      - 'scripts/collect_production_host_profile_v1.py'
+      - 'scripts/verify_production_host_profile_v1.py'
       - 'tests/test_production_bootstrap_v4.py'
       - 'docs/AUTOPILOT_V5_AI_NODE_PRODUCTION_BOOTSTRAP_V4_20260824.md'
       - '.github/workflows/autopilot-v5-ai-node-production-bootstrap-v4.yml'
@@ -30,3 +32,13 @@ jobs:
           assert len(result['missing']) == 7
           print(result)
           PY
+      - name: Assert host collector fails without explicit persistent-host attestation
+        run: |
+          set +e
+          python scripts/collect_production_host_profile_v1.py \
+            --attestation NOT_A_PRODUCTION_ATTESTATION \
+            --production-root "$PWD" \
+            --output /tmp/should-not-exist-production-host-profile.json
+          code=$?
+          test "$code" -ne 0
+          test ! -e /tmp/should-not-exist-production-host-profile.json
