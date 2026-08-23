@@ -31,6 +31,14 @@ def _canonical(value: Any) -> bytes:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
 
 
+def _is_digest(value: Any) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(char in "0123456789abcdef" for char in value)
+    )
+
+
 def verify_contract(value: dict[str, Any]) -> str:
     if not isinstance(value, dict):
         raise ProductionBootstrapError("contract must be object")
@@ -66,14 +74,23 @@ def verify_contract(value: dict[str, Any]) -> str:
 def assess_production_inputs(contract: dict[str, Any], supplied: dict[str, str | None] | None = None) -> dict[str, Any]:
     verify_contract(contract)
     supplied = dict(supplied or {})
+    unknown = sorted(set(supplied) - set(REQUIRED_INPUT_KEYS))
+    if unknown:
+        raise ProductionBootstrapError("unknown production inputs: " + ",".join(unknown))
     declared = contract["required_inputs"]
     if set(declared) != set(REQUIRED_INPUT_KEYS):
         raise ProductionBootstrapError("required input shape mismatch")
     values = {key: supplied.get(key, declared[key]) for key in REQUIRED_INPUT_KEYS}
-    missing = [key for key, value in values.items() if not value]
+    missing = [key for key, value in values.items() if value is None]
+    malformed = [key for key, value in values.items() if value is not None and not _is_digest(value)]
+    if malformed:
+        raise ProductionBootstrapError("malformed production digests: " + ",".join(sorted(malformed)))
     reused = [key for key, value in values.items() if value in LAB_ROOTS]
     if reused:
         raise ProductionBootstrapError("LAB evidence reuse forbidden: " + ",".join(sorted(reused)))
+    present = [value for value in values.values() if value is not None]
+    if len(present) != len(set(present)):
+        raise ProductionBootstrapError("production evidence roots must be distinct")
     if missing:
         return {
             "status": "BLOCKED_MISSING_FRESH_PRODUCTION_INPUTS",
@@ -84,11 +101,11 @@ def assess_production_inputs(contract: dict[str, Any], supplied: dict[str, str |
             "execution_authority": "NONE",
         }
     return {
-        "status": "READY_FOR_GOVERNANCE_REVIEW_NOT_LAUNCHED",
+        "status": "READY_FOR_GOVERNANCE_EVIDENCE_VERIFICATION_NOT_LAUNCHED",
         "startup_allowed": False,
         "missing": [],
         "current_running": False,
-        "governance_status": "REVIEW_REQUIRED",
+        "governance_status": "VERIFICATION_REQUIRED",
         "execution_authority": "NONE",
     }
 
