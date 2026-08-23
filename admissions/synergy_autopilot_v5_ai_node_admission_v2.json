@@ -1,0 +1,26 @@
+{
+  "schema": "synergy.meta-os-ai-node-admission/v2",
+  "admission_id": "SYNERGY_AUTOPILOT_V5_AI_NODE_ADMISSION_TRANSPORT_BOUND_20260823",
+  "subject": "synergy-autopilot-v5-ai-node",
+  "previous_admission_digest": "5ab38263faccd06914ac1ab2edec37ef8cc2efbb5f8f508dccac15a26fb95fcf",
+  "profile_digest": "6a84a2dd132823756c9f159b04584ac384dca9514316b3ff5c9f4ce06e1696d3",
+  "source_commit": "c39f6f0ee0e37c08366a63ec160c580b9ae954ba",
+  "integration_manifest_digest": "a793250aaa2299fdaf1661e985423c2b62687a19395ceabcc7bb63c005defe54",
+  "transport_binding_digest": "3c8198e10863c52c0492ca422c404a1e05e6fd2f48f4c393587d9d87eee3855f",
+  "decision": "ADMITTED_TRANSPORT_BOUND_NOT_LAUNCHABLE_NOT_RUNNING",
+  "admission_effect": "REGISTRY_ELIGIBILITY_ONLY",
+  "blockers": [
+    "HOST_PROFILE_NOT_BOUND",
+    "SUPERVISOR_CONFIG_NOT_MATERIALIZED",
+    "DEPLOYMENT_EVIDENCE_NOT_EXECUTED"
+  ],
+  "running": false,
+  "auto_start": false,
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "host_execution_authority": "NONE",
+  "blockchain_submission_authority": "NONE",
+  "execution_authority": "NONE",
+  "admission_digest": "4d3502dba28745b8a734c082ca0260cbbfd4ead11a1396537434844df9987ee3"
+}
