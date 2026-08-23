@@ -18,6 +18,13 @@ class ProductionBootstrapV1Tests(unittest.TestCase):
     def setUpClass(cls):
         cls.contract = json.loads((ROOT / "production" / "autopilot_v5_ai_node_production_bootstrap_contract_v1.json").read_text(encoding="utf-8"))
 
+    def fresh_inputs(self):
+        alphabet = "123456789abcdef"
+        return {
+            key: alphabet[index] * 64
+            for index, key in enumerate(self.contract["required_inputs"])
+        }
+
     def test_canonical_contract(self):
         self.assertEqual(
             verify_contract(self.contract),
@@ -30,16 +37,33 @@ class ProductionBootstrapV1Tests(unittest.TestCase):
         self.assertFalse(result["startup_allowed"])
         self.assertEqual(len(result["missing"]), 7)
 
-    def test_all_fresh_inputs_only_reach_governance_review(self):
-        supplied = {key: str(index + 1) * 64 for index, key in enumerate(self.contract["required_inputs"])}
-        result = assess_production_inputs(self.contract, supplied)
-        self.assertEqual(result["status"], "READY_FOR_GOVERNANCE_REVIEW_NOT_LAUNCHED")
+    def test_all_fresh_inputs_only_reach_governance_evidence_verification(self):
+        result = assess_production_inputs(self.contract, self.fresh_inputs())
+        self.assertEqual(result["status"], "READY_FOR_GOVERNANCE_EVIDENCE_VERIFICATION_NOT_LAUNCHED")
         self.assertFalse(result["startup_allowed"])
-        self.assertEqual(result["governance_status"], "REVIEW_REQUIRED")
+        self.assertEqual(result["governance_status"], "VERIFICATION_REQUIRED")
 
     def test_reject_lab_root_reuse(self):
-        supplied = {key: str(index + 1) * 64 for index, key in enumerate(self.contract["required_inputs"])}
+        supplied = self.fresh_inputs()
         supplied["production_host_profile_digest"] = next(iter(LAB_ROOTS))
+        with self.assertRaises(ProductionBootstrapError):
+            assess_production_inputs(self.contract, supplied)
+
+    def test_reject_malformed_digest(self):
+        supplied = self.fresh_inputs()
+        supplied["production_host_profile_digest"] = "not-a-digest"
+        with self.assertRaises(ProductionBootstrapError):
+            assess_production_inputs(self.contract, supplied)
+
+    def test_reject_duplicate_evidence_roots(self):
+        supplied = self.fresh_inputs()
+        supplied["production_supervisor_config_digest"] = supplied["production_host_profile_digest"]
+        with self.assertRaises(ProductionBootstrapError):
+            assess_production_inputs(self.contract, supplied)
+
+    def test_reject_unknown_input(self):
+        supplied = self.fresh_inputs()
+        supplied["arbitrary_root"] = "a" * 64
         with self.assertRaises(ProductionBootstrapError):
             assess_production_inputs(self.contract, supplied)
 
