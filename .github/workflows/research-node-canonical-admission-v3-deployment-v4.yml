@@ -1,0 +1,37 @@
+name: Research Node Canonical Admission v3 Deployment v4
+
+on:
+  pull_request:
+    paths:
+      - 'admissions/research_compute_node_admission_v3.json'
+      - 'registry/research_compute_node_artifact_registry_v4.json'
+      - 'deployments/research_compute_node_deployment_plan_v4.json'
+      - 'evidence/*_v6.json'
+      - 'evidence/*_v7.json'
+      - 'evidence/*_v4.json'
+      - 'evidence/*location*evidence_v2.json'
+      - 'evidence/research_compute_node_location_evidence_self_digest_negative_evidence_v1.json'
+      - 'src/synergy_meta_os/admission_v3.py'
+      - 'src/synergy_meta_os/deployment_v4.py'
+      - 'tests/test_admission_v3_deployment_v4.py'
+      - '.github/workflows/research-node-canonical-admission-v3-deployment-v4.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_admission_v1.py tests/test_deployment_v1.py tests/test_deployment_v2.py tests/test_admission_v2_deployment_v3.py tests/test_admission_v3_deployment_v4.py
