@@ -1,0 +1,26 @@
+{
+  "schema": "synergy.meta-os-supervisor-config/v1",
+  "supervisor_id": "SYNERGY_AUTOPILOT_V5_AI_NODE_LAB_SUPERVISOR_20260823",
+  "scope": "EPHEMERAL_LAB_EXECUTION_ONLY_NOT_PRODUCTION",
+  "host_profile_digest": "36a9092977e360b56fd7d1e21b4504f1215ed741df6f492b3ed37b79649573bb",
+  "node_integration_manifest_digest": "a793250aaa2299fdaf1661e985423c2b62687a19395ceabcc7bb63c005defe54",
+  "transport_binding_digest": "3c8198e10863c52c0492ca422c404a1e05e6fd2f48f4c393587d9d87eee3855f",
+  "resident_shim_sha256": "b64139ed56d040a5c3363226eb96ad38a4c0bea7abf17f93dfa00ae368aaf28b",
+  "processes": [
+    {"id":"autopilot-node","command":["python","{resident_shim}","{node_root}"],"network":"NONE_DIRECT","authority":"NONE"},
+    {"id":"content-a","command":["python","{synergynet_artifact}","content-cache","--store","{cache_a}","--host","127.0.0.1","--port","17791"],"network":"LOOPBACK","authority":"NONE"},
+    {"id":"content-b","command":["python","{synergynet_artifact}","content-cache","--store","{cache_b}","--host","127.0.0.1","--port","17792"],"network":"LOOPBACK","authority":"NONE"},
+    {"id":"synergynet-relay","command":["python","{synergynet_artifact}","relay","--peer-directory","{peer_directory}","--host","127.0.0.1","--port","17793"],"network":"LOOPBACK_STATIC_ALLOWLIST","authority":"NONE"}
+  ],
+  "health_probes": ["AUTOPILOT_RESIDENT_READY","CLI_STATUS_READY","NEXUS_STATUS_READY","CONTENT_A_STATUS_READY","CONTENT_B_STATUS_READY","RELAY_STATUS_READY","RELAY_CHUNK_ROUNDTRIP","ALL_PIDS_ALIVE"],
+  "shutdown": "SIGTERM_GRACEFUL",
+  "auto_restart": false,
+  "secrets": "NONE",
+  "nexus_network_access": "NONE",
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "blockchain_submission_authority": "NONE",
+  "execution_authority": "BOUNDED_LAB_SUPERVISOR_ONLY",
+  "supervisor_config_digest": "74797e02e0bb32722bbfffb76af42bb00d495fb3a5c0ea4a5b48a4e1d4275879"
+}
