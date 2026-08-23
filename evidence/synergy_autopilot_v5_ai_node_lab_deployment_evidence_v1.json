@@ -1,0 +1,90 @@
+{
+  "schema": "synergy.meta-os-deployment-evidence/v1",
+  "deployment_id": "SYNERGY_AUTOPILOT_V5_AI_NODE_LAB_DEPLOYMENT_20260823",
+  "claim_tier": "LOCAL_EXECUTED_LAB_EVIDENCE_NOT_PRODUCTION",
+  "host_profile_digest": "36a9092977e360b56fd7d1e21b4504f1215ed741df6f492b3ed37b79649573bb",
+  "supervisor_config_digest": "74797e02e0bb32722bbfffb76af42bb00d495fb3a5c0ea4a5b48a4e1d4275879",
+  "node_integration_manifest_digest": "a793250aaa2299fdaf1661e985423c2b62687a19395ceabcc7bb63c005defe54",
+  "node_release_sha256": "afba4eb7508564292f6695dbef69e9a043a998da8a2e4b587922c17bbefb37cb",
+  "synergynet_artifact_sha256": "7f22e68d80a7df879af71ebccdb45f8edb10cae3698bf07faa7076ce76fd0ef7",
+  "transport_binding_digest": "3c8198e10863c52c0492ca422c404a1e05e6fd2f48f4c393587d9d87eee3855f",
+  "started_at": "2026-08-23T18:57:54.643683+00:00",
+  "running_snapshot": {
+    "status": "RUNNING_VERIFIED",
+    "captured_at": "2026-08-23T18:57:59.736230+00:00",
+    "pids": {"content-a":1258,"content-b":1259,"relay":1281,"autopilot-node":1294},
+    "alive": {"content-a":true,"content-b":true,"relay":true,"autopilot-node":true},
+    "autopilot_resident": {
+      "accounting_authority": "NONE",
+      "execution_authority": "NONE",
+      "external_side_effects": "DISABLED_BY_DEFAULT",
+      "financial_authority": "NONE",
+      "knowledge_digest": "7b6d3f9bd07247c97cfec7ba532341c126c111d5e8c4a973e28810107736c899",
+      "nexus_status": "READY",
+      "node_id": "synergy-autopilot-v5-ai-node",
+      "payment_authority": "NONE",
+      "router_model_digest": "66363afa3a63155774435aeb6649022ba166684274739709d229bcde6f64a5ea",
+      "schema": "synergy.autopilot-v5-ai-node-resident-status/v1",
+      "status": "READY"
+    },
+    "cli_status": {
+      "schema": "synergy.autopilot-v5-ai-node-status/v1",
+      "node_id": "synergy-autopilot-v5-ai-node",
+      "nexus": {
+        "execution_authority": "NONE",
+        "operation": "STATUS",
+        "payload": {
+          "authority_order": ["FORMAL_VERIFIED","CYBER_FEEDBACK","NONE"],
+          "components": ["R710_FROZEN_FORMAL_PROOF","EXACT_SMALLWORLD","BOUNDED_CYBER_STATE"],
+          "execution_authority": "NONE",
+          "r710_source": "EXACT_FROZEN_UPSTREAM",
+          "schema": "nexus.artifact-core-status/v1",
+          "status": "READY"
+        },
+        "request_digest": "e34f2e77268709beeb4ea77408b7a5f7104c6513e15976752fe445fec8f5d759",
+        "request_id": "05d34c05-6389-4393-a12b-b890d2ff895e",
+        "response_digest": "5826dee441846c594fbd5d475b58ba5083054c207d0414dfd40dd05101f59e25",
+        "schema": "nexus.artifact-response/v1"
+      },
+      "knowledge_digest": "7b6d3f9bd07247c97cfec7ba532341c126c111d5e8c4a973e28810107736c899",
+      "router_model_digest": "66363afa3a63155774435aeb6649022ba166684274739709d229bcde6f64a5ea",
+      "evidence_root": "0000000000000000000000000000000000000000000000000000000000000000",
+      "external_side_effects": "DISABLED_BY_DEFAULT",
+      "financial_authority": "NONE",
+      "payment_authority": "NONE",
+      "accounting_authority": "NONE",
+      "execution_authority": "NONE"
+    },
+    "nexus_status": {
+      "execution_authority": "NONE",
+      "operation": "STATUS",
+      "payload": {
+        "authority_order": ["FORMAL_VERIFIED","CYBER_FEEDBACK","NONE"],
+        "components": ["R710_FROZEN_FORMAL_PROOF","EXACT_SMALLWORLD","BOUNDED_CYBER_STATE"],
+        "execution_authority": "NONE",
+        "r710_source": "EXACT_FROZEN_UPSTREAM",
+        "schema": "nexus.artifact-core-status/v1",
+        "status": "READY"
+      },
+      "request_digest": "d8925f90384f1d7ddcc2bb31a9ffe055f08c429f8df035cac0e5253c19a7ea82",
+      "request_id": "d91ef6cb-d00a-422a-96f8-fe263846fea3",
+      "response_digest": "c16c386ca107d2ff71e0d1d194b29c82d375034006c7c4f2dce2ee26b6ce4fbd",
+      "schema": "nexus.artifact-response/v1"
+    },
+    "content_a_status": {"execution_authority":"NONE","max_payload_bytes":33554432,"ok":true,"protocol":"synergynet.content-wire/v3","schema":"synergynet.content-service/v3","service_id":"content-cache","status":"READY"},
+    "content_b_status": {"execution_authority":"NONE","max_payload_bytes":33554432,"ok":true,"protocol":"synergynet.content-wire/v3","schema":"synergynet.content-service/v3","service_id":"content-cache","status":"READY"},
+    "relay_status": {"execution_authority":"NONE","ok":true,"peer_count":2,"peer_directory_mode":"STATIC_LOCAL_ALLOWLIST","protocol":"synergynet.relay-wire/v3","schema":"synergynet.relay-service/v3","service_id":"synergynet","status":"READY"},
+    "relay_roundtrip": {"chunk_digest":"deaa06a7a2601f136af33f874572fa58bf1ed279f060bb975e3531e7c3d7931e","raw_bytes":45,"relay_response_digest":"ad1803fa4ce5251afc95506c99beee1b1196a1ac43b2de83da15b41d6f8d09f2","destination_verified":true}
+  },
+  "stopped_at": "2026-08-23T18:58:00.945173+00:00",
+  "final_state": "STOPPED_AFTER_VERIFICATION",
+  "exit_codes": {"content-a":0,"content-b":0,"relay":0,"autopilot-node":0},
+  "all_health_checks_passed": true,
+  "nexus_network_access": "NONE",
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "blockchain_submission_authority": "NONE",
+  "execution_authority": "BOUNDED_LAB_SUPERVISOR_ONLY",
+  "deployment_evidence_digest": "8e1b05dca7e349d57e1908dca717d2c1d451ca79adde5cfe539e9e46f83d052b"
+}
