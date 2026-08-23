@@ -1,0 +1,40 @@
+{
+  "schema": "synergy.meta-os-production-transition-gate/v1",
+  "gate_id": "SYNERGY_AUTOPILOT_V5_AI_NODE_PRODUCTION_GATE_20260823",
+  "node_id": "synergy-autopilot-v5-ai-node",
+  "lab_deployment_result_digest": "011c3ce24cfd33dc99fbdea0ea2f5dcd344deefd927f57c1b9c1fa3e3eaa3833",
+  "lab_deployment_evidence_digest": "8e1b05dca7e349d57e1908dca717d2c1d451ca79adde5cfe539e9e46f83d052b",
+  "lab_host_profile_digest": "36a9092977e360b56fd7d1e21b4504f1215ed741df6f492b3ed37b79649573bb",
+  "lab_supervisor_config_digest": "74797e02e0bb32722bbfffb76af42bb00d495fb3a5c0ea4a5b48a4e1d4275879",
+  "lab_state": "RUNNING_VERIFIED_THEN_STOPPED_GRACEFULLY",
+  "current_running": false,
+  "production_status": "BLOCKED_NOT_DEPLOYED",
+  "production_host_profile_digest": null,
+  "production_supervisor_config_digest": null,
+  "production_deployment_evidence_digest": null,
+  "production_deployment_result_digest": null,
+  "requirements": [
+    "NEW_PERSISTENT_PRODUCTION_HOST_PROFILE",
+    "NEW_PRODUCTION_SUPERVISOR_CONFIG",
+    "FRESH_ARTIFACT_RESOLUTION_AND_HASH_VERIFICATION",
+    "FRESH_PRODUCTION_HEALTH_AND_TRANSPORT_ROUNDTRIP",
+    "FRESH_PRODUCTION_DEPLOYMENT_EVIDENCE",
+    "FRESH_PRODUCTION_DEPLOYMENT_RESULT",
+    "EXPLICIT_GOVERNANCE_PROMOTION"
+  ],
+  "forbidden_reuse": [
+    "LAB_PIDS_AS_PRODUCTION_PIDS",
+    "LAB_TIMESTAMPS_AS_PRODUCTION_TIMESTAMPS",
+    "LAB_HOST_PROFILE_AS_PRODUCTION_HOST_PROFILE",
+    "LAB_SUPERVISOR_AS_PRODUCTION_SUPERVISOR",
+    "LAB_DEPLOYMENT_EVIDENCE_AS_PRODUCTION_EVIDENCE"
+  ],
+  "nexus_network_access": "NONE",
+  "auto_start": false,
+  "financial_authority": "NONE",
+  "payment_authority": "NONE",
+  "accounting_authority": "NONE",
+  "blockchain_submission_authority": "NONE",
+  "node_execution_authority": "NONE",
+  "gate_digest": "fd3f97c1422376ae507e7ec0ab1dcff529cba4ad9b5f6b1e9b7b62ef43d75b8c"
+}
