@@ -5,12 +5,17 @@ import json
 from typing import Any, Mapping, Sequence
 
 SCHEMA = "synergy.economic-testnet-external-deployment-gate/v1"
+EXPECTED_GATE_DIGEST = "2d053095eac57dbf22e3fceaeec0aeadfa11577b42b7eb418f3661b18d20d40f"
 GENESIS = "cfba3627eb65d933ed1dec416bfe1c28ecf586312028efc7e629859f315678b2"
 TESTNET_SOURCE_COMMIT = "72a7853fba49d20c208bd2d9776d6c107648b882"
 LOCAL_PERSISTENCE_EVIDENCE = "7c533e6ebb3b3177ef9191d1951c930ddd9d6f49541b0fa3982924f2dce86680"
 META_OS_BOOTSTRAP_V5 = "6ccecccc03189c6de934abf146cab87bb25b022551ba8d453cfefd4f5a3cdffd"
 HEX = frozenset("0123456789abcdef")
 REQUIRED_NODE_COUNT = 3
+NETWORK_REQUIREMENT = "THREE_DISTINCT_PERSISTENT_EXTERNAL_HOSTS"
+STORAGE_REQUIREMENT = "PERSISTENT_DURABLE_STATE_PER_NODE"
+RESTART_REQUIREMENT = "FRESH_PROCESS_RESTART_RECOVERY_PER_NODE"
+TRANSPORT_REQUIREMENT = "NON_LOOPBACK_CROSS_HOST_CHECKPOINT_PROPAGATION_TRANSCRIPT"
 NODE_ROOT_FIELDS = (
     "host_profile_digest",
     "supervisor_config_digest",
@@ -49,7 +54,7 @@ def verify_gate_contract_v1(contract: Mapping[str, Any]) -> dict[str, Any]:
         raise EconomicTestnetExternalDeploymentGateV1Error("gate schema mismatch")
     item = dict(contract)
     supplied = item.pop("digest", None)
-    if supplied != canonical_digest(item):
+    if supplied != EXPECTED_GATE_DIGEST or canonical_digest(item) != EXPECTED_GATE_DIGEST:
         raise EconomicTestnetExternalDeploymentGateV1Error("gate digest mismatch")
     if item.get("economic_testnet_genesis_digest") != GENESIS:
         raise EconomicTestnetExternalDeploymentGateV1Error("genesis drift")
@@ -61,6 +66,10 @@ def verify_gate_contract_v1(contract: Mapping[str, Any]) -> dict[str, Any]:
         raise EconomicTestnetExternalDeploymentGateV1Error("Meta-OS bootstrap context drift")
     if item.get("required_node_count") != REQUIRED_NODE_COUNT:
         raise EconomicTestnetExternalDeploymentGateV1Error("external testnet requires exactly three nodes")
+    if item.get("network_requirement") != NETWORK_REQUIREMENT or item.get("storage_requirement") != STORAGE_REQUIREMENT or item.get("restart_requirement") != RESTART_REQUIREMENT or item.get("transport_requirement") != TRANSPORT_REQUIREMENT:
+        raise EconomicTestnetExternalDeploymentGateV1Error("deployment requirement drift")
+    if item.get("required_node_root_fields") != list(NODE_ROOT_FIELDS):
+        raise EconomicTestnetExternalDeploymentGateV1Error("required node root fields drift")
     if item.get("node_inputs") != [None, None, None]:
         raise EconomicTestnetExternalDeploymentGateV1Error("canonical gate must not fabricate hosts")
     if item.get("gate_status") != "BLOCKED_AWAITING_THREE_REAL_PERSISTENT_EXTERNAL_HOSTS":
