@@ -48,6 +48,7 @@ def rehash(value):
 
 def test_canonical_gate_is_blocked_with_null_hosts():
     verified = MOD.verify_gate_contract_v1(gate())
+    assert verified["digest"] == MOD.EXPECTED_GATE_DIGEST
     assessment = MOD.assess_external_deployment_candidate_v1(verified, nodes=None, cross_host_checkpoint_transcript_digest=None)
     assert assessment["status"] == "BLOCKED_MISSING_EXTERNAL_HOST_INPUTS"
     assert assessment["startup_allowed"] is False
@@ -92,4 +93,20 @@ def test_fresh_hash_cannot_populate_canonical_gate_or_claim_testnet():
     item["external_testnet_claim"] = True
     rehash(item)
     with pytest.raises(MOD.EconomicTestnetExternalDeploymentGateV1Error):
+        MOD.verify_gate_contract_v1(item)
+
+
+def test_fresh_hash_cannot_weaken_required_evidence_fields():
+    item = copy.deepcopy(gate())
+    item["required_node_root_fields"] = ["host_profile_digest", "deployment_result_digest"]
+    rehash(item)
+    with pytest.raises(MOD.EconomicTestnetExternalDeploymentGateV1Error, match="gate digest mismatch"):
+        MOD.verify_gate_contract_v1(item)
+
+
+def test_fresh_hash_cannot_change_network_requirement():
+    item = copy.deepcopy(gate())
+    item["network_requirement"] = "ANY_THREE_PROCESSES"
+    rehash(item)
+    with pytest.raises(MOD.EconomicTestnetExternalDeploymentGateV1Error, match="gate digest mismatch"):
         MOD.verify_gate_contract_v1(item)
