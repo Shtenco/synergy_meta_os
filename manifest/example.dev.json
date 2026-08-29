@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "node_id": "synergy-dev-node",
+  "profile": "EDGE_CLIENT",
+  "attested": false,
+  "development": true,
+  "generation": 1,
+  "services": []
+}
