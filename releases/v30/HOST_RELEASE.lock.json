@@ -1,0 +1,18 @@
+{
+  "host_repository": "Shtenco/turbo_linux",
+  "host_release_branch": "turbo-v30-unified-hhdm-metastorage-rc",
+  "release": "TURBO Meta-OS v30 UNIFIED HHDM + MetaStorage RC",
+  "full_archive": {
+    "name": "TURBO_META_OS_v30_UNIFIED_HHDM_METASTORAGE_RC_FULL.zip",
+    "sha256": "f2aa3424662a8e1b025fb253fb73da7897b50a6b3bd9c327379b580e726ee623"
+  },
+  "source_capsule": {
+    "name": "TURBO_META_OS_v30_SOURCE_CAPSULE.tar.xz",
+    "sha256": "f0b5760dab826493f25af019a5c12ca2d2684d5279669eb360c3895df23be99b"
+  },
+  "source_overlay": {
+    "name": "v30_overlay.tar.xz",
+    "sha256": "d06b5e848444356a04fa61fe93296fb7bfa6fb45ccb6aecf3efdb1d502ac2afd"
+  },
+  "authority_rule": "Host execution capability does not imply blockchain, finance, payment or treasury authority."
+}
