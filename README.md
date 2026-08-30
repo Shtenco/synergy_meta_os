@@ -1,173 +1,77 @@
-# SYNERGY META-OS
+# SYNERGY META OS v31 — Signed Durable Supervisor RC
 
-**Runtime orchestration layer for a complete SYNERGY node.**
+v31 is the compatibility control plane above the existing TURBO META OS v29
+native foundation.  It admits only canonical Ed25519-signed manifests, requires
+a separate governance signature before activation, pins the exact host build,
+and keeps activation state in a synchronous SQLite transaction plus an
+independently verifiable hash chain.
 
-Architecture root: `Shtenco/synergy_system`  
-Target host substrate: `Shtenco/turbo_linux`  
-P2P transport: `Shtenco/synergynet`
+This release candidate does **not** claim Desktop Alpha or production status.
+The supervisor currently starts Linux compatibility services using rlimits and
+`PR_SET_NO_NEW_PRIVS`; TURBO's native capability/process isolation remains the
+host boundary.
 
-## Role
+## Authority flow
 
-`synergy_meta_os` is the **running service orchestrator** of an actual node.
+1. NEXUS may produce a bounded inference result.
+2. AUTOPILOT may produce a proposal only.
+3. Policy admits an exact signed node manifest.
+4. A separate governance key signs an exact activation grant.
+5. The supervisor starts only the granted service set and commits state only
+   after every new process passes its health probe.
 
-Do not confuse it with `synergy_system`:
+`ADMITTED`, `LAUNCHABLE`, `RUNNING`, and `PRODUCTION` are deliberately separate
+states.  v31 never reports `PRODUCTION`.
 
-```text
-synergy_system   = architecture, federation, authority map
-synergy_meta_os  = runtime supervisor of services on one node
+## Security properties implemented
+
+- deterministic JSON with floats and unsafe integers rejected;
+- Ed25519 manifest and governance signatures with bounded validity windows;
+- exact `turbo_linux` commit and release-SHA lock;
+- fixed capability registry and per-service-kind capability ceilings;
+- strict acyclic dependency graph, maximum 64 services;
+- NEXUS and AUTOPILOT cannot receive financial execution authority;
+- high-risk capabilities require hardware attestation;
+- raw private-key bytes and `.key`/`.pem`/`.ppk` paths are rejected;
+- immutable SHA-256 CAS with atomic publication and read-back verification;
+- generation anti-rollback and activation nonce replay protection;
+- transactional active/rollback/staged slots;
+- append-only fsync audit chain and independent durable-state hash chain;
+- failed upgrades preserve the old healthy process and active manifest.
+
+## Run
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -e .
+python -m unittest discover -s tests -v
+PYTHONPATH=src python tools/qualify_v31.py \
+  --output evidence/v31/QUALIFICATION.json
 ```
 
-## Target node architecture
+Useful offline inspection commands:
 
-```text
-Signed Node Manifest
-        ↓
-Host Attestation / Node Identity
-        ↓
-Capability & Service Graph
-        ↓
-┌──────────────────────────────────────────────┐
-│ SYNERGY Meta-OS                              │
-│                                              │
-│ SynergyNet daemon                            │
-│ Blockchain node role (if authorized)         │
-│ MetaPay service role (if authorized)         │
-│ Financial OS service role (if authorized)    │
-│ NEXUS inference / agents                     │
-│ Business Autopilot services                  │
-│ Compression/content cache                    │
-│ Storage / update / rollback                  │
-│ Audit / telemetry / health                   │
-└──────────────────┬───────────────────────────┘
-                   ↓
-          TURBO Linux / compatible host
+```bash
+synergy-meta-os capability-registry-digest
+synergy-meta-os verify-manifest MANIFEST.json --keys PUBLIC_KEYS.json
+synergy-meta-os status --root NODE_ROOT
+synergy-meta-os verify-evidence --root NODE_ROOT
 ```
 
-## Non-negotiable authority rule
+Public-key files contain a JSON object of `key_id` to raw Ed25519 public-key
+bytes encoded with Base64.  Private keys are intentionally not loaded by the
+runtime CLI.
 
-Meta-OS orchestrates authorities; it does **not merge them**.
+## Evidence
 
-A root/supervisor process must not be able to turn:
+- `evidence/v31/STATUS.json` — claim ledger and honest gate state;
+- `evidence/v31/QUALIFICATION.json` — repeatable stress results;
+- `docs/REPOSITORY_REUSE_MATRIX_RU.md` — disposition of all 44 Shtenco repos;
+- `releases/v31/RELEASE_NOTES_V31_RU.md` — Russian release notes.
 
-```text
-network privilege → treasury privilege
-AI privilege      → payment privilege
-blockchain role   → accounting authority
-UI role           → ledger mutation
-```
+The native v29 foundation remains a separate build tree.  Its x86_64 full-RAM
+QEMU, VT-d/MSI-X, UEFI recovery, sanitizer, W^X and freeze gates were rerun for
+this RC; their results are recorded in `STATUS.json` rather than represented as
+new Python functionality.
 
-Service capabilities should be explicit, revocable and least-privilege.
-
-## Target modules
-
-```text
-synergy_meta_os/
-  manifest/
-  identity/
-  attestation/
-  capabilities/
-  service_graph/
-  lifecycle/
-  scheduler/
-  network/
-  blockchain/
-  finance/
-  agents/
-  storage/
-  updates/
-  rollback/
-  observability/
-  audit/
-```
-
-## Signed node manifest
-
-A node manifest should describe, at minimum:
-
-- node identity/profile;
-- software artifact hashes;
-- enabled service roles;
-- capability grants;
-- required ports/endpoints;
-- resource limits;
-- data directories;
-- key references (never raw keys);
-- upgrade/rollback policy;
-- minimum compatible schema generations;
-- expected health checks;
-- trust roots / signing policy.
-
-## Node role profiles
-
-Not every node runs everything.
-
-Examples:
-
-```text
-EDGE_CLIENT
-P2P_RELAY
-CONTENT_CACHE
-NEXUS_COMPUTE
-BLOCKCHAIN_PEER
-BLOCKCHAIN_VALIDATOR
-METAPAY_GATEWAY
-FINANCIAL_SERVICE
-BUSINESS_AUTOPILOT
-FULL_SYNERGY_NODE
-```
-
-High-value roles must require explicit authorization/attestation and must not be inferred from installed software.
-
-## TURBO Linux integration
-
-The preferred long-term host is `turbo_linux`, especially for:
-
-- capability-oriented service isolation;
-- bounded IPC;
-- protected secrets;
-- VM/compatibility domains;
-- secure update/rollback;
-- device and network service separation.
-
-Meta-OS must also support a compatibility profile on conventional Linux during development.
-
-## SynergyNet integration
-
-SynergyNet is the data-plane transport. Meta-OS controls lifecycle/resource policy around the daemon but does not redefine its routing protocol.
-
-## Financial integration
-
-Meta-OS may launch Financial OS / MetaPay components only on authorized nodes.
-
-It must never interpret “service is running” as “financial action is authorized”.
-
-## Update model
-
-Target update flow:
-
-```text
-new signed manifest
-→ artifact hash verification
-→ compatibility check
-→ staged service update
-→ health/evidence gates
-→ activate
-→ automatic rollback on failure
-```
-
-Financial and blockchain service updates should bind exact source/build artifacts and require stronger governance than ordinary UI updates.
-
-## Initial milestone
-
-The first meaningful Meta-OS milestone is one reproducible local node that can:
-
-1. verify a signed development manifest;
-2. launch isolated SynergyNet + NEXUS + read-only control-plane services;
-3. enforce declared capability/resource boundaries;
-4. collect deterministic service/audit evidence;
-5. update one service and rollback safely;
-6. prove that disabled financial/blockchain roles cannot be activated by an unprivileged service.
-
-## Principle
-
-**Meta-OS is the conductor of the node, not the owner of every instrument.**

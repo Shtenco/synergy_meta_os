@@ -1,0 +1,83 @@
+{
+  "schema": "synergy.release-status/v31",
+  "release": "v31-signed-durable-supervisor-rc1",
+  "generated_at": "2026-08-30T21:24:00Z",
+  "status": "RELEASE_CANDIDATE",
+  "claim": "SIGNED_DURABLE_SUPERVISOR_RC",
+  "desktop_alpha": false,
+  "production": false,
+  "source_audit": {
+    "github_owner": "Shtenco",
+    "repositories_discovered": 44,
+    "default_branch_trees_inspected": 44,
+    "synergy_meta_os_branches_inspected": 29,
+    "turbo_linux_relevant_branches_inspected": 4,
+    "private_key_contents_read_or_copied": false
+  },
+  "host_lock": {
+    "repository": "Shtenco/turbo_linux",
+    "ref": "turbo-v30-unified-hhdm-metastorage-rc",
+    "commit_sha": "81fa56ef8d7e33ceeaa9a829416c9c34f5aa1536",
+    "release_sha256": "f2aa3424662a8e1b025fb253fb73da7897b50a6b3bd9c327379b580e726ee623"
+  },
+  "gates": {
+    "v31_unit_tests": {"status": "PASS", "tests": 16},
+    "v31_qualification": {
+      "status": "PASS",
+      "signature_mutations": 10000,
+      "signature_mutations_rejected": 10000,
+      "cas_roundtrips": 2048,
+      "durable_activation_cycles": 1000,
+      "state_history_entries": 2000,
+      "audit_records": 512,
+      "failed_upgrade_cycles": 50,
+      "old_process_preserved": 50
+    },
+    "native_x86_64_full_ram_qemu": {
+      "status": "PASS",
+      "guest_ram_gib": 2,
+      "cpus": 4,
+      "machine": "q35",
+      "vtd": true,
+      "msix": true,
+      "bounded_dma_window_kib": 16,
+      "attempt": 2,
+      "maximum_attempts": 3,
+      "markers": ["TURBO_QEMU_STAGE1K_BATCH_XPU_PASS", "TURBO_QEMU_STAGE1L_MSIX_VTD_PASS"]
+    },
+    "uefi_ab_recovery_qemu": {"status": "PASS", "cases_passed": 6, "cases_total": 6},
+    "host_regressions": {"status": "PASS"},
+    "asan_ubsan": {"status": "PASS"},
+    "network_malformed_packet_model": {"status": "MODEL_PASS", "mutations": 100000},
+    "storage_power_cut_model": {"status": "MODEL_PASS", "cycles": 10000},
+    "architecture_contract": {"status": "PASS", "checks": 88},
+    "requirements_traceability": {"status": "PASS", "requirements": 54, "evidence_links": 88},
+    "kernel_freeze": {"status": "PASS", "entries": 43},
+    "wx_minimality_security_audit": {"status": "PASS"},
+    "aarch64_v31_build": {"status": "NOT_RUN", "reason": "cross compiler unavailable"},
+    "physical_nvme": {"status": "NOT_RUN"},
+    "physical_ethernet": {"status": "NOT_RUN"},
+    "physical_gpu_scanout": {"status": "NOT_RUN"},
+    "physical_xhci_hda": {"status": "NOT_RUN"},
+    "tpm_secure_boot_production_enrollment": {"status": "NOT_RUN"},
+    "hardware_endurance_8_24_72h": {"status": "NOT_RUN"},
+    "hardware_power_cut_500": {"status": "NOT_RUN"}
+  },
+  "authority": {
+    "manifest_signing": "Ed25519",
+    "activation_signing": "Ed25519_SEPARATE_GOVERNANCE_KEY",
+    "execution_authority_in_manifest": "NONE",
+    "financial_authority": "NONE",
+    "payment_authority": "NONE",
+    "accounting_authority": "NONE",
+    "blockchain_submission_authority": "NONE",
+    "production_keys_provisioned": false
+  },
+  "limitations": [
+    "supervisor services use a Linux compatibility sandbox, not a new native TURBO service cell",
+    "physical device and endurance gates have not been run",
+    "AArch64 v31 has not been rebuilt",
+    "native scalable persistent filesystem and desktop applications are not complete"
+  ]
+}
+

@@ -1,0 +1,61 @@
+{
+  "checks": {
+    "ed25519_signature_mutation": {
+      "elapsed_ms": 9532,
+      "result": {
+        "accepted": 0,
+        "mutations": 10000,
+        "rejected": 10000
+      },
+      "status": "PASS"
+    },
+    "fsync_audit_hash_chain": {
+      "elapsed_ms": 2684,
+      "result": {
+        "appended": 512,
+        "verified": 512
+      },
+      "status": "PASS"
+    },
+    "immutable_cas_roundtrip": {
+      "elapsed_ms": 4800,
+      "result": {
+        "operations": 2048,
+        "unique_objects": 2048,
+        "verified": 2048
+      },
+      "status": "PASS"
+    },
+    "sqlite_full_durable_state": {
+      "elapsed_ms": 2549,
+      "result": {
+        "activation_cycles": 1000,
+        "history_entries": 2000,
+        "rollback_rejected": 1,
+        "used_nonces": 1000
+      },
+      "status": "PASS"
+    },
+    "transactional_failed_upgrade": {
+      "elapsed_ms": 1821,
+      "result": {
+        "audit_records": 103,
+        "failed_upgrades": 50,
+        "old_process_preserved": 50,
+        "rejected": 50
+      },
+      "status": "PASS"
+    }
+  },
+  "environment": {
+    "implementation": "CPython",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "python": "3.12.13"
+  },
+  "generated_at": "2026-08-30T21:23:51Z",
+  "private_keys_persisted": false,
+  "production": false,
+  "release": "v31-signed-durable-supervisor-rc1",
+  "schema": "synergy.v31-qualification/v1",
+  "status": "PASS"
+}
