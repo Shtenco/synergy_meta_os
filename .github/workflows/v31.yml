@@ -11,24 +11,28 @@ permissions:
 jobs:
   qualify:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.11", "3.12"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-      - run: python -m pip install --upgrade pip
-      - run: python -m pip install -e .
-      - run: PYTHONWARNINGS=error::ResourceWarning python -m unittest discover -s tests -v
-      - run: python tools/qualify_v31.py --output build-evidence/QUALIFICATION.json
+      - name: Fetch exact commit without external actions
         env:
-          PYTHONPATH: src
-      - uses: actions/upload-artifact@v4
-        with:
-          name: v31-qualification-py${{ matrix.python-version }}
-          path: build-evidence/QUALIFICATION.json
-
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          auth="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          git init .
+          git remote add origin "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git"
+          git -c http.extraheader="AUTHORIZATION: basic ${auth}" fetch --depth=1 origin "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
+      - name: Install in an isolated environment
+        run: |
+          set -euo pipefail
+          python3 -m venv .venv
+          .venv/bin/python -m pip install -e .
+      - name: Unit tests
+        run: |
+          set -euo pipefail
+          PYTHONWARNINGS=error::ResourceWarning .venv/bin/python -m unittest discover -s tests -v
+      - name: Qualification
+        run: |
+          set -euo pipefail
+          PYTHONPATH=src .venv/bin/python tools/qualify_v31.py --output build-evidence/QUALIFICATION.json
+          .venv/bin/python -m json.tool build-evidence/QUALIFICATION.json >/dev/null
