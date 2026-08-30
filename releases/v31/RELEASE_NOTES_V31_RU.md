@@ -37,6 +37,12 @@ v31 закрывает следующий разрыв после v29 Full-RAM/H
 - kernel freeze: 43/43;
 - W^X/minimality/security audit: PASS.
 
+GitHub Actions был запущен двумя вариантами workflow, включая pure-shell без
+внешних Actions. В обоих случаях GitHub завершил job до выделения runner:
+`steps=null`, `logs_url=null`; тестовый код не исполнялся. Поэтому remote CI
+отмечен `INFRA_BLOCKED`, а не `FAIL` или `PASS`. Приведённые выше результаты —
+фактические локальные/QEMU gates текущей среды.
+
 ## Честная граница
 
 Это **не Desktop Alpha и не production release**. Supervisor пока запускает
@@ -47,4 +53,3 @@ AArch64 v31 и 8/24/72-hour/500-power-cut hardware gates остаются нез
 
 Любые финансовые, payment, accounting, treasury и blockchain-submission
 полномочия в manifest/grant v31 равны `NONE`.
-

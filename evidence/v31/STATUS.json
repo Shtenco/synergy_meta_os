@@ -54,6 +54,16 @@
     "requirements_traceability": {"status": "PASS", "requirements": 54, "evidence_links": 88},
     "kernel_freeze": {"status": "PASS", "entries": 43},
     "wx_minimality_security_audit": {"status": "PASS"},
+    "github_actions_remote": {
+      "status": "INFRA_BLOCKED",
+      "run_id": 33336715635,
+      "job_id": 99324840252,
+      "runner_allocated": false,
+      "steps": null,
+      "logs_url": null,
+      "test_code_executed": false,
+      "reason": "GitHub completed the job before runner allocation; no steps or job log were created"
+    },
     "aarch64_v31_build": {"status": "NOT_RUN", "reason": "cross compiler unavailable"},
     "physical_nvme": {"status": "NOT_RUN"},
     "physical_ethernet": {"status": "NOT_RUN"},
@@ -76,8 +86,8 @@
   "limitations": [
     "supervisor services use a Linux compatibility sandbox, not a new native TURBO service cell",
     "physical device and endurance gates have not been run",
+    "remote GitHub Actions did not allocate a runner; local qualification evidence is not a remote CI result",
     "AArch64 v31 has not been rebuilt",
     "native scalable persistent filesystem and desktop applications are not complete"
   ]
 }
-
