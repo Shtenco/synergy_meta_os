@@ -1,0 +1,38 @@
+name: v31 signed durable supervisor
+
+on:
+  push:
+    branches: [main, "codex/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch exact commit without external actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          auth="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          git init .
+          git remote add origin "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git"
+          git -c http.extraheader="AUTHORIZATION: basic ${auth}" fetch --depth=1 origin "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
+      - name: Install in an isolated environment
+        run: |
+          set -euo pipefail
+          python3 -m venv .venv
+          .venv/bin/python -m pip install -e .
+      - name: Unit tests
+        run: |
+          set -euo pipefail
+          PYTHONWARNINGS=error::ResourceWarning .venv/bin/python -m unittest discover -s tests -v
+      - name: Qualification
+        run: |
+          set -euo pipefail
+          PYTHONPATH=src .venv/bin/python tools/qualify_v31.py --output build-evidence/QUALIFICATION.json
+          .venv/bin/python -m json.tool build-evidence/QUALIFICATION.json >/dev/null
