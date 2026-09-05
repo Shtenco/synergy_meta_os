@@ -1,0 +1,51 @@
+{
+  "schema": "synergy.economic-testnet-three-host-requirements/v1",
+  "requirement_id": "SYNERGY_ECONOMIC_TESTNET_THREE_HOST_REQUIREMENTS_V1_20260905",
+  "required_host_count": 3,
+  "host_status": ["REQUIRED_NOT_PROVIDED","REQUIRED_NOT_PROVIDED","REQUIRED_NOT_PROVIDED"],
+  "host_requirements": [
+    "DISTINCT_PERSISTENT_EXTERNAL_HOST",
+    "UNIQUE_HOST_FINGERPRINT",
+    "PERSISTENT_DURABLE_STORAGE",
+    "FRESH_PROCESS_RESTART_RECOVERY",
+    "NON_LOOPBACK_TRANSPORT_ENDPOINT",
+    "ARTIFACT_IDENTITY_VERIFICATION",
+    "SUPERVISOR_CONFIGURATION",
+    "DEPLOYMENT_EVIDENCE_AND_RESULT"
+  ],
+  "cross_host_requirement": "NON_LOOPBACK_CROSS_HOST_CHECKPOINT_PROPAGATION_TRANSCRIPT",
+  "recommended_initial_profile_nonbinding": {
+    "vCPU": "1-2",
+    "RAM_GB": 2,
+    "SSD_GB": "20-30",
+    "os": "Ubuntu 24.04 LTS or compatible controlled Linux",
+    "public_network": "publicly routable or securely connected distinct-host transport"
+  },
+  "safe_access": "OPERATOR_CONTROLLED_CONNECTOR_OR_OPERATOR_RUN_BOOTSTRAP",
+  "forbidden": [
+    "RAW_SSH_PRIVATE_KEYS_IN_CHAT",
+    "RAW_SSH_PRIVATE_KEYS_IN_GIT",
+    "THREE_CONTAINERS_ON_ONE_HOST_AS_THREE_HOST_EVIDENCE",
+    "LOCALHOST_ONLY_EVIDENCE",
+    "SYNTHETIC_CI_RUNNERS_AS_PERSISTENT_HOST_EVIDENCE"
+  ],
+  "test_plan": [
+    "DEPLOY_AND_PROPAGATE_CHECKPOINT",
+    "PERSIST_STATE",
+    "STOP_ALL_NODE_PROCESSES",
+    "RESTART_AND_RECOVER",
+    "DELIBERATELY_LAG_ONE_NODE_AND_CATCH_UP",
+    "VERIFY_IDENTICAL_TERMINAL_CHECKPOINT",
+    "REPLAY_OLD_CHECKPOINT_AND_REJECT",
+    "TAMPER_PERSISTED_STATE_AND_FAIL_CLOSED"
+  ],
+  "external_testnet_claim": false,
+  "consensus_claim": "NONE",
+  "finality_claim": "NONE",
+  "signing_authority": "NONE",
+  "blockchain_submission_authority": "NONE",
+  "execution_authority": "NONE",
+  "production_deployment_authority": "NONE",
+  "status": "BLOCKED_AWAITING_THREE_REAL_PERSISTENT_EXTERNAL_HOSTS_AND_SAFE_ACCESS",
+  "generated_at": "2026-09-05T17:25:18Z"
+}
