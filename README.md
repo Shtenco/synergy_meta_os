@@ -337,3 +337,36 @@ flowchart LR
 Любое сильное утверждение должно указывать на воспроизводимый тест, benchmark, ledger/evidence artifact или формально проверяемый контракт.
 
 <!-- SYNERGY-FEDERATION-PASSPORT:END -->
+
+---
+
+# ⚙️ Фактический bootstrap `main`
+
+На текущем `main` уже есть минимальный executable bootstrap:
+
+```text
+manifest/example.dev.json
+runtime/orchestrator.py
+tests/test_orchestrator.py
+releases/v30/HOST_RELEASE.lock.json
+releases/v30/RELEASE_V30.md
+```
+
+Это позволяет точнее определить текущую зрелость Meta-OS: не пустой концепт, но ещё не полный service mesh всей федерации.
+
+```mermaid
+flowchart LR
+    MAN[📜 example.dev.json] --> ORCH[⚙️ orchestrator.py]
+    ORCH --> TEST[🧪 test_orchestrator.py]
+    ORCH --> LOCK[🔐 HOST_RELEASE.lock.json]
+    LOCK --> REL[📦 RELEASE_V30.md]
+```
+
+### Следующий executable gate
+
+1. signed manifest verification;
+2. explicit capabilities;
+3. launch at least SynergyNet + NEXUS read-only services;
+4. negative test: disabled finance/blockchain role cannot activate;
+5. update + rollback evidence;
+6. deterministic audit trail.
