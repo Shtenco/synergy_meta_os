@@ -3,8 +3,8 @@
 **Runtime orchestration layer for a complete SYNERGY node.**
 
 Architecture root: `Shtenco/synergy_system`  
-Target host substrate: `Shtenco/turbo_linux`  
-P2P transport: `Shtenco/synergynet`
+Target host substrate: `Shtenco/synergy_turbo_linux`  
+P2P transport: `Shtenco/synergy_net`
 
 ## Role
 
