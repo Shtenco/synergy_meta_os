@@ -307,17 +307,17 @@ The first meaningful Meta-OS milestone is one reproducible local node that can:
 <!-- SYNERGY-FEDERATION-PASSPORT:START -->
 ---
 
-## 🧭 SYNERGY federation passport
+##  SYNERGY federation passport
 
-**Домен:** ⚙️ Runtime orchestration  
+**Домен:**  Runtime orchestration  
 **Архитектурный родитель:** [`synergy_system`](https://github.com/Shtenco/synergy_system)  
 **Архитектурный корень:** [`synergy_system`](https://github.com/Shtenco/synergy_system)
 
 ```mermaid
 flowchart LR
-    SYS[🧭 synergy_system] --> P[synergy_system]
+    SYS[ synergy_system] --> P[synergy_system]
     P --> THIS[synergy_meta_os]
-    THIS --> E[📦 Evidence / outputs]
+    THIS --> E[ Evidence / outputs]
 ```
 
 Архитектурная принадлежность не заменяет доказанную интеграцию. Runtime-связь должна подтверждаться контрактами, manifests, deployment-конфигурацией или тестами.
@@ -328,9 +328,9 @@ flowchart LR
 
 ### Навигация
 
-- [📚 Атлас 75 репозиториев](https://github.com/Shtenco/synergy_system/blob/main/docs/SYNERGY_REPOSITORY_ATLAS.md)
-- [🧾 Registry](https://github.com/Shtenco/synergy_system/blob/main/registry/SYNERGY_REPOSITORIES.json)
-- [🧭 Architecture root](https://github.com/Shtenco/synergy_system)
+- [ Атлас 75 репозиториев](https://github.com/Shtenco/synergy_system/blob/main/docs/SYNERGY_REPOSITORY_ATLAS.md)
+- [ Registry](https://github.com/Shtenco/synergy_system/blob/main/registry/SYNERGY_REPOSITORIES.json)
+- [ Architecture root](https://github.com/Shtenco/synergy_system)
 
 ### Evidence rule
 
@@ -340,7 +340,7 @@ flowchart LR
 
 ---
 
-# ⚙️ Фактический bootstrap `main`
+#  Фактический bootstrap `main`
 
 На текущем `main` уже есть минимальный executable bootstrap:
 
@@ -356,10 +356,10 @@ releases/v30/RELEASE_V30.md
 
 ```mermaid
 flowchart LR
-    MAN[📜 example.dev.json] --> ORCH[⚙️ orchestrator.py]
-    ORCH --> TEST[🧪 test_orchestrator.py]
-    ORCH --> LOCK[🔐 HOST_RELEASE.lock.json]
-    LOCK --> REL[📦 RELEASE_V30.md]
+    MAN[ example.dev.json] --> ORCH[ orchestrator.py]
+    ORCH --> TEST[ test_orchestrator.py]
+    ORCH --> LOCK[ HOST_RELEASE.lock.json]
+    LOCK --> REL[ RELEASE_V30.md]
 ```
 
 ### Следующий executable gate
